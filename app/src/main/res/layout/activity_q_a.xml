@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.QAActivity">
+    tools:context=".ui.ui.qa.QAActivity">
 
     <SearchView
         android:id="@+id/sv_questions"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:searchIcon="@drawable/ic_baseline_search_24"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:layout_width="49dp"
         android:layout_height="49dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="14dp"
         app:layout_constraintBottom_toBottomOf="@+id/sv_questions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,11 +32,11 @@
         android:layout_width="113dp"
         android:layout_height="21dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="14dp"
+        android:background="@drawable/timer_background"
         android:gravity="center"
         android:text="00:02:55"
         android:textColor="@color/white"
-        android:background="@drawable/timer_background"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_questions_profile" />
@@ -44,8 +44,8 @@
     <include
         android:id="@+id/include"
         layout="@layout/question_layout_4_choice"
-        android:layout_width="348dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="434dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="14dp"
@@ -66,14 +66,13 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:background="@color/blue"
         android:drawableStart="@drawable/ic_baseline_arrow_left_24"
         android:drawableTint="@color/black"
         android:text="Prev"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/include"
         app:layout_constraintTop_toBottomOf="@+id/include" />
 
@@ -81,15 +80,13 @@
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:background="@color/blue"
         android:drawableEnd="@drawable/ic_baseline_arrow_right_24"
         android:drawableTint="@color/black"
         android:text="Next"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/include"
-        app:layout_constraintTop_toBottomOf="@+id/include" />
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="@+id/include" />
 
 
 

@@ -9,4 +9,8 @@
     <color name="gray">#707070</color>
     <color name="blue">#5C64E4</color>
     <color name="orange">#FFA371</color>
+    <color name="orangeDark">#ff6f20</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#56C545</color>
+
 </resources>

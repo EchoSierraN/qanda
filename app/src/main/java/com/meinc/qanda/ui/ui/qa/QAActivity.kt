@@ -1,25 +1,14 @@
-package com.meinc.qanda.ui
+package com.meinc.qanda.ui.ui.qa
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.TextView
-import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.meinc.qanda.R
-import com.meinc.qanda.data.TestData
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.meinc.qanda.databinding.ActivityQABinding
-import com.meinc.qanda.databinding.FragmentDashboardBinding
 import com.meinc.qanda.managers.QAManager
-import com.meinc.qanda.models.QAModel
-import com.meinc.qanda.models.TestModel
-import com.meinc.qanda.ui.ui.dashboard.DashboardFragment
 import com.meinc.qanda.ui.ui.dashboard.DashboardViewModel
-import com.meinc.qanda.utilities.Tags
 import kotlinx.android.synthetic.main.activity_q_a.*
-import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.question_layout_4_choice.*
 
 class QAActivity : AppCompatActivity() {
@@ -29,11 +18,10 @@ class QAActivity : AppCompatActivity() {
     //endregion
 
     //region VIEW BINDING DECLARATION
-    private lateinit var binding: ActivityQABinding
+    lateinit var binding: ActivityQABinding
     //endregion
 
     //region REQUIRED OBJECT DECLARATION
-    private var qaManager = QAManager()
 
     //endregion
 
@@ -59,12 +47,12 @@ class QAActivity : AppCompatActivity() {
         setContentView(binding.root)
         //endregion
         //region PREPARE DATA RECEIVED WITH INTENT
-        testId= intent.getIntExtra("TEST_ID", 0)
-        qaManager.currentTestID= testId
+        testId = intent.getIntExtra("TEST_ID", 0)
+        QAManager.instance.currentTestID = testId
         //endregion
+
         //display first question
-        qaManager.
-                displayCurrentQuestion(
+        QAManager.instance.displayCurrentQuestion(
             tv_question,
             tv_question_number,
             btn_choice1,
@@ -74,22 +62,37 @@ class QAActivity : AppCompatActivity() {
             tv_timer
         )
 
+        binding.btnNext.setOnClickListener {
 
-        //nullCheck()
-//        displayCurrentQuestion(
-//            questionIndex,
-//            tv_question,
-//            tv_question_number,
-//            btn_choice1,
-//            btn_choice2,
-//            btn_choice3,
-//            btn_choice4,
-//            tv_timer
-//        )
+            QAManager.instance.resetHighlight(btn_choice1, btn_choice2, btn_choice3, btn_choice4)
 
-//        binding.btnNext.setOnClickListener {
-//            nextQuestion()
-//        }
+            //Toast.makeText(applicationContext, "Clicked", Toast.LENGTH_SHORT).show()
+            QAManager.instance.nextQuestion(
+                applicationContext,
+                QAManager.instance,
+                tv_question,
+                tv_question_number,
+                btn_choice1,
+                btn_choice2,
+                btn_choice3,
+                btn_choice4,
+                tv_timer
+            )
+        }
+
+    }
+
+    fun startFeedbackDialog(answered: Int, total: Int, context: Context = this.applicationContext){
+        val bundle = Bundle()
+        bundle.putInt("QUESTION_ANSWERED", answered)
+        bundle.putInt("QUESTION_TOTAL", total)
+// set Fragmentclass Arguments
+// set Fragmentclass Arguments
+        val fragmentDialog = FragmentDialog()
+        fragmentDialog.arguments= bundle
+
+
+        FragmentDialog().show(supportFragmentManager, "Result")
     }
 
 }

@@ -1,17 +1,14 @@
 package com.meinc.qanda.ui.ui.home
 
-import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.meinc.qanda.R
 import com.meinc.qanda.models.TestModel
-import com.meinc.qanda.ui.QAActivity
+import com.meinc.qanda.ui.ui.qa.QAActivity
 import kotlinx.android.synthetic.main.test_type_card.view.*
 
 class HomeRVAdapter(private var arrayList: ArrayList<TestModel>, val context: Context) :
@@ -47,6 +44,7 @@ class HomeRVAdapter(private var arrayList: ArrayList<TestModel>, val context: Co
 
         holder.itemView.setOnClickListener {
             //Toast.makeText(context, "${arrayList[position]} clicked!", Toast.LENGTH_SHORT).show()
+
             //create an intent passing in a bundle
             val intent= Intent(this.context, QAActivity::class.java)
             intent.putExtra("TEST_ID", arrayList[position].idTest)

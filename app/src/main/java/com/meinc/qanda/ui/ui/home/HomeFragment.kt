@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
         val homeRVAdapter= HomeRVAdapter(TestData.testData, requireContext())
         binding.rvTestTypeList.layoutManager= LinearLayoutManager(this.context)
         binding.rvTestTypeList.adapter= homeRVAdapter
-
         //endregion
 
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
